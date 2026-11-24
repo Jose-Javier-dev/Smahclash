@@ -1,0 +1,562 @@
+/* ===== Reset y variables ===== */
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --fondo: #0f1226;
+    --fondo-claro: #1a1f45;
+    --rojo: #ff3b3b;
+    --cian: #00e5ff;
+    --amarillo: #ffd400;
+    --texto: #ffffff;
+    --ancho-max: 1140px;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--fondo);
+    color: var(--texto);
+    line-height: 1.5;
+}
+
+h1, h2, h3 {
+    line-height: 1.2;
+}
+
+h1 {
+    color: var(--cian);
+    text-shadow: 0 0 10px var(--cian);
+}
+
+.contenedor {
+    width: 100%;
+    max-width: var(--ancho-max);
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* ===== Header (base: celular) ===== */
+.header {
+    display: flex;
+    flex-wrap: wrap;                 /* el menú abierto baja a otra línea */
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--fondo-claro);
+    border-bottom: 2px solid var(--cian);
+    box-shadow: 0 0 12px var(--cian);
+}
+
+.logo {
+    font-size: 1.3rem;
+    font-weight: bolder;
+    color: var(--amarillo);
+    text-decoration: none;
+}
+
+.hamburguesa {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0.5rem;
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
+.hamburguesa span {
+    display: block;
+    width: 26px;
+    height: 3px;
+    background-color: var(--cian);
+    border-radius: 2px;
+    transition: transform .2s, opacity .2s;
+}
+
+/* Rayitas convertidas en X cuando el menú está abierto */
+.hamburguesa.activo span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.hamburguesa.activo span:nth-child(2) { opacity: 0; }
+.hamburguesa.activo span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+.menu {
+    display: none;                   /* lo abre la hamburguesa */
+    width: 100%;
+}
+
+.menu.abierto {
+    display: block;
+}
+
+.menu ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 1rem 0 0;
+}
+
+.menu a {
+    color: var(--texto);
+    text-decoration: none;
+    transition: color .2s;
+}
+
+.menu a:hover {
+    color: var(--cian);
+}
+
+/* ===== Portada ===== */
+.portada {
+    padding: 2.5rem 1rem;
+    text-align: center;
+}
+
+.portada h1 {
+    margin: 0 0 1rem;
+    font-size: 2rem;
+}
+
+.info-evento {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    list-style: none;
+    margin: 1.5rem 0;
+    padding: 0;
+    font-weight: bold;
+    color: var(--amarillo);
+}
+
+/* ===== Video de fondo en la portada ===== */
+.portada-video {
+    position: relative;              /* referencia para colocar el video */
+    overflow: hidden;                /* recorta lo que se salga */
+}
+
+.video-fondo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;               /* llena todo el espacio sin deformarse */
+    z-index: 0;                      /* capa de abajo */
+}
+
+/* Capa encima del video: azul noche que se funde con el fondo hacia abajo */
+.portada-video::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(15, 18, 38, .2), var(--fondo));
+    z-index: 1;
+}
+
+.portada-video .portada {
+    position: relative;
+    z-index: 2;                      /* el texto queda arriba de todo */
+}
+
+/* ===== Botón ===== */
+.boton {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    background-color: var(--rojo);
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 12px var(--rojo);
+    transition: transform .2s, box-shadow .2s, background-color .2s;
+}
+
+.boton:hover {
+    transform: scale(1.05);
+    background-color: var(--cian);
+    color: var(--fondo);
+    box-shadow: 0 0 18px var(--cian);
+}
+
+/* ===== Cuenta regresiva (elemento nuevo) ===== */
+.titulo-cuenta {
+    margin: 2rem 0 1rem;
+    font-size: 1.1rem;
+}
+
+.cuenta {
+    display: flex;
+    justify-content: center;
+    gap: .6rem;
+    margin-bottom: 2rem;
+}
+
+.caja {
+    flex: 1;
+    max-width: 100px;
+    padding: .8rem .2rem;
+    background-color: var(--fondo-claro);
+    border: 2px solid var(--cian);
+    border-radius: 8px;
+    box-shadow: 0 0 10px var(--cian), inset 0 0 10px rgba(0, 229, 255, .3);
+}
+
+.caja span {
+    display: block;
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: var(--cian);
+    text-shadow: 0 0 8px var(--cian);
+}
+
+.caja small {
+    display: block;
+}
+
+/* La caja de segundos es roja y late cada segundo */
+.caja.segundos {
+    border-color: var(--rojo);
+    box-shadow: 0 0 10px var(--rojo), inset 0 0 10px rgba(255, 59, 59, .3);
+    animation: pulso 1s infinite;
+}
+
+.caja.segundos span {
+    color: var(--rojo);
+    text-shadow: 0 0 8px var(--rojo);
+}
+
+@keyframes pulso {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
+/* Mensaje cuando la cuenta llega a cero */
+.cuenta.terminado {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--amarillo);
+    text-shadow: 0 0 10px var(--amarillo);
+}
+
+/* ===== Carrusel ===== */
+.carrusel {
+    position: relative;
+    margin: 2rem auto;
+}
+
+.diapositiva {
+    display: none;
+    overflow: hidden;
+    text-align: center;
+    background-color: var(--fondo-claro);
+    border: 2px solid var(--amarillo);
+    border-radius: 10px;
+    box-shadow: 0 0 15px var(--amarillo);
+    animation: aparecer .6s;
+}
+
+.diapositiva.activa {
+    display: flex;
+    flex-direction: column;          /* celular: imagen arriba, texto abajo */
+}
+
+.diapositiva img {
+    display: block;
+    width: 100%;
+    height: 280px;
+    object-fit: cover;               /* recorta la imagen sin deformarla */
+    object-position: center 30%;     /* muestra más la parte de arriba */
+}
+
+.texto-diapositiva {
+    padding: 1.5rem 1rem;
+}
+
+.diapositiva h2 {
+    margin-top: 0;
+    color: var(--amarillo);
+}
+
+.diapositiva p {
+    margin-bottom: 0;
+}
+
+@keyframes aparecer {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.flecha {
+    position: absolute;
+    top: 140px;                      /* a la mitad de la imagen (280px / 2) */
+    transform: translateY(-50%);
+    padding: .5rem .7rem;
+    font-size: 1.2rem;
+    background-color: var(--fondo);
+    color: var(--amarillo);
+    border: 2px solid var(--amarillo);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color .2s, color .2s;
+}
+
+.flecha:hover {
+    background-color: var(--amarillo);
+    color: var(--fondo);
+}
+
+.anterior { left: 1.5rem; }
+.siguiente { right: 1.5rem; }
+
+/* ===== Cards (flex con wrap) ===== */
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.tarjeta {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--fondo-claro);
+    border-left: 4px solid var(--rojo);
+    border-radius: 8px;
+    transition: transform .2s, box-shadow .2s;
+}
+
+.tarjeta:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 15px var(--cian);
+}
+
+.tarjeta h3 {
+    margin: 0 0 .5rem;
+}
+
+.tarjeta p {
+    margin: 0 0 .5rem;
+}
+
+.hora {
+    display: inline-block;
+    margin-bottom: .5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--amarillo);
+}
+
+.responsable {
+    color: var(--cian);
+    font-size: .9rem;
+}
+
+/* ===== Secciones de la portada ===== */
+.seccion {
+    margin-bottom: 1rem;
+}
+
+.seccion h2 {
+    text-align: center;
+    margin: 2rem 0 1.5rem;
+}
+
+.centrado {
+    text-align: center;
+}
+
+/* Datos en números */
+.dato {
+    width: calc(50% - .5rem);        /* 2 por fila en celular */
+    padding: 1rem .5rem;
+    text-align: center;
+    background-color: var(--fondo-claro);
+    border: 2px solid var(--cian);
+    border-radius: 8px;
+    box-shadow: 0 0 10px var(--cian);
+}
+
+.dato .numero {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--amarillo);
+    text-shadow: 0 0 8px var(--amarillo);
+}
+
+.dato p {
+    margin: .3rem 0 0;
+}
+
+/* Imagen dentro de una card */
+.tarjeta img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: .8rem;
+    border-radius: 6px;
+}
+
+/* Banner final con imagen de fondo */
+.banner {
+    padding: 3rem 0;
+    text-align: center;
+    background: linear-gradient(rgba(15, 18, 38, .45), rgba(15, 18, 38, .45)),
+                url("../img/banner.jpg") center / cover;
+}
+
+.banner h2 {
+    margin-top: 0;
+    color: var(--amarillo);
+    text-shadow: 0 0 10px var(--amarillo);
+}
+
+/* ===== Formulario ===== */
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    max-width: 500px;
+}
+
+.formulario input,
+.formulario select {
+    padding: .6rem;
+    font-size: 1rem;
+    background-color: var(--fondo-claro);
+    color: var(--texto);
+    border: 2px solid var(--cian);
+    border-radius: 5px;
+}
+
+.formulario input:focus,
+.formulario select:focus {
+    outline: none;
+    box-shadow: 0 0 10px var(--cian);
+}
+
+.casilla {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    margin: .5rem 0;
+}
+
+.casilla input {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+.mensajes,
+.errores {
+    color: var(--rojo);
+    font-weight: bold;
+}
+
+/* ===== Accordion ===== */
+.preguntas {
+    margin: 2rem 0;
+}
+
+.accordion .titulo {
+    width: 100%;
+    padding: 1rem;
+    text-align: left;
+    font-size: 1rem;
+    background-color: var(--fondo-claro);
+    color: var(--texto);
+    border: 0;
+    border-bottom: 3px solid var(--cian);
+    cursor: pointer;
+    transition: background-color .2s;
+}
+
+.accordion .titulo:hover {
+    background-color: #262c5e;
+}
+
+.accordion .contenido {
+    display: none;
+    padding: 0 1rem;
+}
+
+.accordion .item.activo .contenido {
+    display: block;
+}
+
+/* ===== Footer ===== */
+.footer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding: 2rem 1rem;
+    background-color: #080a1a;
+    border-top: 2px solid var(--rojo);
+    text-align: center;
+}
+
+.footer a {
+    color: var(--texto);
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: var(--cian);
+}
+
+.redes {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== Mobile first: de menor a mayor ===== */
+@media (min-width: 501px) {
+    .portada h1 { font-size: 2.4rem; }
+    .caja span { font-size: 2.2rem; }
+    .dato .numero { font-size: 2rem; }
+    .info-evento { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+}
+
+@media (min-width: 701px) {
+    .portada { padding: 4rem 2rem; }
+    .diapositiva.activa { flex-direction: row; align-items: center; }
+    .diapositiva img { width: 50%; height: 420px; }
+    .texto-diapositiva { width: 50%; padding: 2rem 3.5rem 2rem 2rem; }
+    .flecha { top: 50%; }
+    .tarjeta.tres { width: calc(33.333% - .67rem); }   /* 3 por fila */
+    .banner { padding: 4.5rem 0; }
+    .tarjeta { width: calc(50% - .5rem); }
+    .footer {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+    }
+}
+
+@media (min-width: 991px) {
+    /* Menú normal reemplaza a la hamburguesa */
+    .hamburguesa { display: none; }
+    .menu { display: block; width: auto; }
+    .menu ul { flex-direction: row; gap: 1.5rem; padding-top: 0; }
+
+    .portada h1 { font-size: 3rem; }
+    .caja span { font-size: 2.8rem; }
+    .tarjeta { width: calc(33.333% - .67rem); }
+    .dato { width: calc(25% - .75rem); }              /* 4 por fila */
+    .dato .numero { font-size: 2.4rem; }
+}
