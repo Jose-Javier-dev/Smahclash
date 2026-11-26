@@ -1,5 +1,6 @@
 <?php include "header.php"; ?>
-    <main class="contenedor">
+    <main class="fondo-imagen fondo-personajes">
+        <div class="contenedor">
         <h1>El torneo</h1>
 
         <section>

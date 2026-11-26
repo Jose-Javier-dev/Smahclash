@@ -560,3 +560,35 @@ h1 {
     .dato { width: calc(25% - .75rem); }              /* 4 por fila */
     .dato .numero { font-size: 2.4rem; }
 }
+
+/* ===== Páginas con imagen de fondo ===== */
+.fondo-imagen {
+    position: relative;              /* referencia para colocar la imagen */
+    padding-top: 1rem;
+}
+
+.fondo-imagen::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 450px;                   /* alto de la zona con imagen */
+    z-index: 0;                      /* capa de abajo */
+}
+
+.fondo-imagen .contenedor {
+    position: relative;
+    z-index: 1;                      /* el texto queda encima */
+}
+
+/* Lo único que cambia entre páginas es la imagen */
+.fondo-personajes::before {
+    background: linear-gradient(rgba(15, 18, 38, .65), var(--fondo)),
+                url("../img/personajes.jpg") center / cover no-repeat;
+}
+
+.fondo-comunidad::before {
+    background: linear-gradient(rgba(15, 18, 38, .65), var(--fondo)),
+                url("../img/comunidad.jpg") center / cover no-repeat;
+}
