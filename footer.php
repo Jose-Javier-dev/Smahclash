@@ -7,7 +7,7 @@
             <li><a href="https://www.facebook.com/" target="_blank">Facebook</a></li>
             <li><a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
         </ul>
-        <p>&copy; 2026 Smash Clash CR. Proyecto académico sin fines de lucro. Super Smash Bros. y sus personajes son marcas de Nintendo; este torneo ficticio no está afiliado a Nintendo.</p>
+        <p>&copy; 2026 Smash Clash CR. Torneo de Super Smash Bros Ultimate</p>
     </footer>
     <script src="./js/main.js"></script>
 </body>
